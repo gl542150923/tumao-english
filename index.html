@@ -1,392 +1,134 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>兔猫英语小镇 · 3–6岁绘本互动冒险地图</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --forest:#2E4540;
-    --cream:#FFF8EB;
-    --apricot:#F5C477;
-    --brown:#593216;
-  }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
-  body{
-    margin:0;min-height:100vh;
-    font-family:"Baloo 2",-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC",sans-serif;
-    background:#DDF0D6;color:var(--forest);
-    display:flex;justify-content:center;
-  }
-  .town{
-    width:100%;max-width:500px;min-height:100vh;position:relative;overflow-x:hidden;
-    background:linear-gradient(180deg,#FFF6DC 0%,#FFF9EC 26%,#E7F4DB 54%,#D9EED0 100%);
-    padding-bottom:46px;
-    box-shadow:0 0 50px rgba(46,69,64,0.14);
-  }
-
-  /* 顶部绘本天空与小镇招牌 */
-  .hero{
-    position:relative;padding:20px 18px 26px;
-    background:linear-gradient(180deg,#FFE7B3 0%,#FFF5DB 78%,rgba(255,249,236,0) 100%);
-    overflow:hidden;
-  }
-  .cloud{
-    position:absolute;background:rgba(255,255,255,0.72);border-radius:999px;pointer-events:none;
-  }
-  .cloud.c1{width:110px;height:36px;top:16px;right:18px}
-  .cloud.c2{width:76px;height:26px;top:52px;left:-14px}
-
-  .top-row{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
-  .brand-chip{
-    background:rgba(255,253,248,0.92);border:2.5px solid #FFFFFF;
-    padding:6px 14px;border-radius:999px;font-size:13px;font-weight:800;color:var(--forest);
-    box-shadow:0 4px 10px rgba(89,50,22,0.08);display:inline-flex;align-items:center;gap:6px;
-  }
-  .star-counter{
-    background:linear-gradient(180deg,#FFFDF8 0%,#FCE7BC 100%);
-    border:2.5px solid #FFFFFF;padding:6px 13px;border-radius:999px;
-    font-size:13.5px;font-weight:800;color:var(--brown);
-    box-shadow:0 4px 0 #DFB676, 0 8px 14px rgba(89,50,22,0.12);
-    display:inline-flex;align-items:center;gap:5px;
-  }
-
-  .stage-card{
-    margin-top:14px;position:relative;z-index:2;
-    background:linear-gradient(180deg,#FFFDF9 0%,#FFF4DC 100%);
-    border:4px solid #FFFFFF;border-radius:30px;padding:18px 18px 16px;
-    box-shadow:0 10px 0 rgba(217,165,87,0.38), 0 18px 34px rgba(89,50,22,0.14);
-    overflow:hidden;
-  }
-  .stage-copy{max-width:62%;position:relative;z-index:2}
-  .stage-copy h1{margin:0;font-size:26px;line-height:1.18;font-weight:800;color:var(--forest)}
-  .stage-copy p{margin:6px 0 0;font-size:13px;line-height:1.5;color:#6E5438;font-weight:700}
-
-  .hero-actors{
-    position:absolute;right:4px;bottom:64px;display:flex;align-items:flex-end;pointer-events:none;
-  }
-  .hero-actors img.r{height:118px;object-fit:contain;transform:translateX(12px);filter:drop-shadow(0 6px 8px rgba(89,50,22,0.18))}
-  .hero-actors img.c{height:96px;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(89,50,22,0.18))}
-
-  /* 巨型粘土风主入口按钮（一眼召唤小孩点击！） */
-  .mega-cta{
-    margin-top:16px;position:relative;z-index:3;
-    display:flex;align-items:center;justify-content:space-between;gap:10px;
-    text-decoration:none;
-    background:linear-gradient(180deg,#FFAD4D 0%,#E86A2C 100%);
-    border:4px solid #FFFFFF;border-radius:24px;padding:10px 14px 10px 12px;
-    color:#FFFFFF;
-    box-shadow:0 8px 0 #B84716, 0 16px 28px rgba(184,71,22,0.32), inset 0 4px 6px rgba(255,255,255,0.45);
-    transition:transform 0.16s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  .mega-cta:active{transform:translateY(5px) scale(0.97)}
-  .mega-cta-left{display:flex;align-items:center;gap:10px}
-  .mega-thumb{
-    width:50px;height:50px;border-radius:16px;background:rgba(255,255,255,0.92);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    box-shadow:0 4px 8px rgba(0,0,0,0.12);
-  }
-  .mega-thumb img{width:40px;height:40px;object-fit:contain}
-  .mega-cta b{display:block;font-size:17px;line-height:1.2;text-shadow:0 2px 3px rgba(0,0,0,0.15)}
-  .mega-cta small{display:block;font-size:12px;opacity:0.95;margin-top:2px}
-  .play-orb{
-    width:44px;height:44px;border-radius:50%;background:#FFFFFF;color:#E86A2C;
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    box-shadow:0 4px 10px rgba(0,0,0,0.16);
-    animation:pulseOrb 1.5s ease-in-out infinite;
-  }
-
-  /* 6 大成长岛粘土筛选条 */
-  .filters{
-    display:flex;gap:8px;overflow-x:auto;padding:4px 16px 12px;scrollbar-width:none;
-  }
-  .filters::-webkit-scrollbar{display:none}
-  .f-pill{
-    flex-shrink:0;border:3px solid #FFFFFF;border-radius:999px;
-    background:rgba(255,253,248,0.92);color:var(--brown);
-    font-size:13px;font-weight:800;padding:7px 14px;cursor:pointer;
-    box-shadow:0 4px 0 rgba(154,116,66,0.22);
-    transition:all 0.16s;
-  }
-  .f-pill.active{
-    background:var(--forest);color:#FFF8EB;border-color:#FFFDF8;
-    box-shadow:0 4px 0 #1A2926;transform:translateY(-1px);
-  }
-
-  /* 蜿蜒绘本冒险小径（彻底告别平庸白方框！） */
-  .map-section{position:relative;padding:8px 18px 10px}
-  .map-head{
-    display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px;padding:0 4px;
-  }
-  .map-head h2{margin:0;font-size:17px;font-weight:800;color:var(--forest);white-space:nowrap}
-  .map-head span{font-size:12px;font-weight:800;color:#5D7A52;background:rgba(255,255,255,0.82);padding:4px 11px;border-radius:999px;white-space:nowrap;flex-shrink:0}
-
-  .trail{
-    position:relative;display:flex;flex-direction:column;gap:18px;
-  }
-  /* 居中虚线冒险路径 */
-  .trail::before{
-    content:"";position:absolute;top:40px;bottom:40px;left:50%;width:6px;
-    transform:translateX(-50%);
-    background:repeating-linear-gradient(180deg,#E5C58A 0 12px, transparent 12px 22px);
-    border-radius:999px;z-index:0;opacity:0.85;
-  }
-
-  .stop-row{
-    display:flex;position:relative;z-index:1;
-  }
-  .stop-row.left{justify-content:flex-start;padding-right:14%}
-  .stop-row.right{justify-content:flex-end;padding-left:14%}
-
-  .stop-node{
-    width:100%;max-width:340px;
-    text-decoration:none;color:var(--forest);
-    background:linear-gradient(180deg,#FFFFFF 0%,#FFFBF2 100%);
-    border:4px solid #FFFFFF;border-radius:28px;
-    padding:12px 14px;
-    display:flex;align-items:center;gap:13px;
-    position:relative;
-    box-shadow:0 8px 0 var(--edge,#D9C298), 0 14px 24px rgba(46,69,64,0.12);
-    transition:transform 0.16s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  .stop-node:active{transform:translateY(4px) scale(0.97)}
-  .stop-node.new-stage{
-    background:linear-gradient(180deg,#FFFDF7 0%,#FFF1CC 100%);
-    border-color:#FFFDF8;
-    box-shadow:0 9px 0 #DF9E3E, 0 16px 28px rgba(212,107,39,0.22);
-  }
-
-  /* 圆形绘本图标勋章 */
-  .medallion{
-    width:68px;height:68px;border-radius:22px;flex-shrink:0;
-    background:var(--tint,#F5C477);border:3px solid #FFFFFF;
-    display:flex;align-items:center;justify-content:center;position:relative;
-    box-shadow:inset 0 4px 8px rgba(255,255,255,0.55), 0 4px 10px rgba(89,50,22,0.14);
-  }
-  .medallion img{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,0.14))}
-  .medallion svg{width:42px;height:42px;filter:drop-shadow(0 3px 4px rgba(0,0,0,0.12))}
-  .ep-num{
-    position:absolute;top:-8px;left:-8px;
-    background:var(--forest);color:#FFF8EB;font-size:11px;font-weight:800;
-    padding:2px 7px;border-radius:999px;border:2px solid #FFFFFF;
-  }
-  .done-star{
-    position:absolute;bottom:-6px;right:-6px;width:24px;height:24px;border-radius:50%;
-    background:#F5B82E;border:2px solid #FFFFFF;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 3px 6px rgba(0,0,0,0.18);
-  }
-
-  .stop-body{min-width:0;flex:1}
-  .stop-top{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-  .stop-body h3{margin:0;font-size:18px;font-weight:800;color:var(--forest);line-height:1.2}
-  .ribbon{
-    font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;
-    background:#FFE1B3;color:#8E4210;
-  }
-  .ribbon.hot{background:#E86A2C;color:#FFFFFF}
-  .stop-sub{margin-top:4px;font-size:12.5px;font-weight:700;color:#735E46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-  .go-dot{
-    width:36px;height:36px;border-radius:50%;flex-shrink:0;
-    background:#F4ECD9;color:var(--forest);
-    display:flex;align-items:center;justify-content:center;
-  }
-  .stop-node.new-stage .go-dot{background:#E86A2C;color:#FFFFFF}
-
-  .ws-bar{
-    margin-top:6px;display:inline-flex;align-items:center;gap:4px;
-    background:#FFF3DC;border:1.5px solid #EBD0A1;color:#7A4414;
-    font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px;
-    text-decoration:none;
-  }
-
-  .coming-soon{
-    margin:22px 18px 0;background:rgba(255,253,248,0.82);border:3px dashed #C7B899;
-    border-radius:24px;padding:16px;text-align:center;
-  }
-  .coming-soon b{display:block;font-size:16px;color:var(--forest)}
-  .coming-soon span{display:block;font-size:12.5px;color:#6E5A45;margin-top:4px;font-weight:700}
-
-  .parent-note{
-    margin:14px 18px 0;background:rgba(46,69,64,0.08);border-radius:20px;
-    padding:14px 16px;font-size:12px;line-height:1.65;color:#465953;font-weight:600;
-  }
-  .parent-note b{color:var(--forest)}
-
-  @keyframes pulseOrb{0%,100%{transform:scale(1)}50%{transform:scale(1.09)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#FFF2D6">
+  <title>兔猫英语小镇 · 3–6岁绘本点读乐园</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./img/v3/pwa/apple-touch-icon.png">
+  <link rel="stylesheet" href="./assets/v3/styles.css">
 </head>
-<body>
-<div class="town">
-  <div class="hero">
-    <div class="cloud c1"></div>
-    <div class="cloud c2"></div>
-
-    <div class="top-row">
-      <div class="brand-chip">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#4AA85C"><path d="M12 2C7 5 4 10 4 14a8 8 0 0 0 16 0c0-4-3-9-8-12z"/></svg>
-        3–6岁低刺激护眼慢英语
-      </div>
-      <div class="star-counter">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
-        <span id="starTxt">0 / 15</span>
-      </div>
-    </div>
-
-    <div class="stage-card">
-      <div class="stage-copy">
-        <h1>兔猫英语小镇</h1>
-        <p>跟着发光小手戳一戳，在绘本里玩出英语语感</p>
-      </div>
-      <div class="hero-actors">
-        <img class="r" src="./img/rabbit.png" alt="折折兔">
-        <img class="c" src="./img/cat.png" alt="团团猫">
+<body class="home-body">
+  <div class="home-shell">
+    <!-- 顶部极简儿童栏：木牌招牌 + 贴纸收集册 + 1.5s长按童锁家长角 -->
+    <header class="top-bar">
+      <div class="brand-plaque">
+        <img class="brand-avatar" src="./img/v3/pwa/icon-192.png" alt="兔猫英语小镇">
+        <strong>兔猫英语小镇</strong>
+        <span class="brand-tag">3–6岁护眼水粉点读馆</span>
       </div>
 
-      <a class="mega-cta" href="./ep001.html">
-        <div class="mega-cta-left">
-          <div class="mega-thumb"><img src="./img/ep001/object-red.png" alt="EP001"></div>
-          <div>
-            <b>第 1 集 · 气球变魔术</b>
-            <small>全屏绘本实景 · 发光小手引导</small>
+      <div class="top-actions">
+        <button class="sticker-pill clay-press" id="btnStickerBook" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFDF8" stroke="#9C5B08" stroke-width="2"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
+          <span id="stickerCountTxt">贴纸册 0/12</span>
+        </button>
+
+        <button class="parent-lock-btn" id="btnParentGate" type="button" aria-label="长按进入家长角">
+          <span class="lock-ring-wrap">
+            <svg class="lock-ring-svg" viewBox="0 0 32 32">
+              <circle cx="16" cy="16" r="13" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+              <circle class="lock-ring-progress" id="lockRingCircle" cx="16" cy="16" r="13"/>
+            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="3"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </span>
+          <span>家长角</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="toast-tip" id="lockToast">👶 请按住「家长角」1.5 秒解锁（防宝宝误触）</div>
+
+    <!-- 双端自适应主体：iPad横屏左树屋右地图，手机竖屏上下流 -->
+    <main class="home-layout">
+      <!-- 左页：兔猫实景迎宾树屋 + V3 三集代表样板精选舱 -->
+      <section class="welcome-book">
+        <div class="plaza-stage">
+          <div class="plaza-copy">
+            <span class="plaza-eyebrow">绘本剧场 V3.0</span>
+            <h1>点一点 · 听一听<br>玩出英语语感</h1>
+            <p>戳戳折折兔和团团猫打招呼，选一集开启三步寻宝冒险！</p>
+          </div>
+
+          <div class="star-summary-bar">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#F5A623"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
+            <span id="totalStarTxt">已点亮 0 颗成长星</span>
+          </div>
+
+          <div class="plaza-actors">
+            <div class="mini-speech" id="heroBubble">Hi! 一起去探险吧！</div>
+            <button class="hero-actor rabbit" id="heroRabbit" type="button" aria-label="折折兔打招呼">
+              <img id="heroRabbitImg" src="./img/v3/actors/rabbit.png" alt="折折兔">
+            </button>
+            <button class="hero-actor cat" id="heroCat" type="button" aria-label="团团猫打招呼">
+              <img id="heroCatImg" src="./img/v3/actors/cat.png" alt="团团猫">
+            </button>
           </div>
         </div>
-        <div class="play-orb">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg>
+
+        <div class="showcase-head">
+          <h2>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="#EB6834"><path d="M12 2l2.6 5.6L20 10l-5.4 2.4L12 18l-2.6-5.6L4 10l5.4-2.4z"/></svg>
+            推荐出发 · 绘本精选站
+          </h2>
+          <span class="showcase-pill">全 36 集已点亮</span>
         </div>
-      </a>
+
+        <div class="showcase-list" id="flagshipList"></div>
+      </section>
+
+      <!-- 右页：六大主题岛全 36 集绘本冒险地图 -->
+      <section class="map-panel">
+        <div class="island-bar" id="islandBar"></div>
+
+        <div class="map-section-head">
+          <h2 id="mapHeading">小镇冒险地图（全 36 集）</h2>
+          <span id="mapSubHint">点击卡片即刻出发</span>
+        </div>
+
+        <div class="episode-grid" id="episodeGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 弹窗 1：我的水粉贴纸收集册（儿童随时可点读） -->
+  <div class="drawer-mask" id="stickerModal">
+    <div class="drawer-book">
+      <div class="drawer-head">
+        <h2>🌟 我的水粉贴纸收集册</h2>
+        <button class="close-circle clay-press" id="closeStickerBtn" type="button" aria-label="关闭">✕</button>
+      </div>
+      <p style="margin:0 0 14px;font-size:13.5px;font-weight:700;color:#6E5438">
+        每完成一集「点读 + 寻宝 + 开口跟读」，就能把这一集的手绘宝物贴纸收进画册！点亮后随时戳一戳听发音：
+      </p>
+      <div class="sticker-grid" id="stickerGrid"></div>
     </div>
   </div>
 
-  <div class="filters" id="filterBar"></div>
+  <!-- 弹窗 2：家长童锁角（1分钟零基础剧本 + 高清 A4 涂色打印卡 + 添加桌面指引） -->
+  <div class="drawer-mask" id="parentModal">
+    <div class="drawer-book">
+      <div class="drawer-head">
+        <h2>👨‍👩‍👧 家长陪玩百宝箱</h2>
+        <button class="close-circle clay-press" id="closeParentBtn" type="button" aria-label="关闭">✕</button>
+      </div>
 
-  <div class="map-section">
-    <div class="map-head">
-      <h2 id="mapTitle">小镇冒险路线（1–15 集）</h2>
-      <span id="mapSub">一关关打卡</span>
+      <div class="parent-ep-tabs" id="parentEpTabs"></div>
+
+      <div class="script-card" id="parentScriptBox"></div>
+
+      <div class="ws-download-box" id="parentWsBox"></div>
+
+      <div style="margin-top:14px;padding:12px 14px;border-radius:18px;background:rgba(38,64,59,0.07);font-size:12.5px;line-height:1.6;color:#3D554F;font-weight:700">
+        📱 <b>iPad / 手机变身全屏原生 App 小技巧：</b>在 Safari 点顶栏/底栏「分享图标 → 添加到主屏幕」，从桌面兔猫图标点开即可完全隐藏浏览器地址栏，护眼沉浸不误触！
+      </div>
     </div>
-    <div class="trail" id="trail"></div>
   </div>
 
-  <div class="coming-soon">
-    <b>下一站：EP016《认识位置》制作中</b>
-    <span>in / on / under / next to · 客厅躲猫猫实景互动版即将解锁</span>
-  </div>
-
-  <div class="parent-note">
-    <b>家长小贴士：</b><br>
-    1. 推荐先从 <b>第 1 集《认识颜色》新版实景模板</b> 开始试玩，全程语音 + 发光小手引导，孩子不认字也能自己玩到底；<br>
-    2. 其余集数正在按第 1 集实景模板分批升级，目前均可点开听真人词典原声与闯关（iPhone 请先关侧边静音键）。
-  </div>
-</div>
-
-<script src="./data/episodes.js"></script>
-<script>
-const EPS = window.TUMAO_EPISODES || [];
-const ISLANDS = ["全部", "基础认知", "身体日常", "家园出行", "美味餐桌", "情商社交", "自然探索"];
-let activeIsland = "全部";
-
-function getDoneSet() {
-  try { return new Set(JSON.parse(localStorage.getItem("tumao_done_eps") || "[]")); }
-  catch { return new Set(); }
-}
-
-// 为每一集提供精美的专属矢量绘本徽章（EP001 直接用真水粉红苹果！）
-function badgeGraphic(ep) {
-  if (ep.id === "EP001") return `<img src="./img/ep001/object-red.png" alt="颜色">`;
-  const svgs = {
-    EP002: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="#FFE0B5" stroke="#593216" stroke-width="3"/><circle cx="23" cy="27" r="4" fill="#2E4540"/><circle cx="41" cy="27" r="4" fill="#2E4540"/><path d="M24 40 Q32 47 40 40" fill="none" stroke="#D46B27" stroke-width="3.5" stroke-linecap="round"/></svg>`,
-    EP003: `<svg viewBox="0 0 64 64"><path d="M32 54 C14 42 10 30 10 22 A12 12 0 0 1 32 16 A12 12 0 0 1 54 22 C54 30 50 42 32 54Z" fill="#E86A7D" stroke="#FFF" stroke-width="3"/></svg>`,
-    EP004: `<svg viewBox="0 0 64 64"><ellipse cx="32" cy="38" rx="18" ry="15" fill="#FFD15C" stroke="#8E5B08" stroke-width="3"/><circle cx="26" cy="34" r="3" fill="#2E4540"/><circle cx="38" cy="34" r="3" fill="#2E4540"/><ellipse cx="32" cy="42" rx="7" ry="4" fill="#F08A24"/></svg>`,
-    EP005: `<svg viewBox="0 0 64 64"><circle cx="32" cy="37" r="18" fill="#E94F3F" stroke="#8F2217" stroke-width="3"/><path d="M32 19 Q36 10 44 12" fill="none" stroke="#4AA85C" stroke-width="4" stroke-linecap="round"/></svg>`,
-    EP006: `<svg viewBox="0 0 64 64"><polygon points="32,54 18,22 46,22" fill="#F2852E" stroke="#8E4210" stroke-width="3" stroke-linejoin="round"/><path d="M26 20 L22 10 M32 20 L32 8 M38 20 L42 10" stroke="#4AA85C" stroke-width="4" stroke-linecap="round"/></svg>`,
-    EP007: `<svg viewBox="0 0 64 64"><rect x="18" y="18" width="28" height="34" rx="8" fill="#FFFFFF" stroke="#224561" stroke-width="3"/><rect x="21" y="28" width="22" height="21" rx="5" fill="#BDE0F5"/></svg>`,
-    EP008: `<svg viewBox="0 0 64 64"><path d="M12 40 Q32 46 52 40 L48 34 Q46 18 32 18 Q18 18 16 34 Z" fill="#F5B82E" stroke="#7A4C06" stroke-width="3"/><rect x="16" y="31" width="32" height="6" rx="3" fill="#E86A2C"/></svg>`,
-    EP009: `<svg viewBox="0 0 64 64"><polygon points="32,10 10,30 54,30" fill="#E87A5D" stroke="#6E2E1E" stroke-width="3" stroke-linejoin="round"/><rect x="16" y="30" width="32" height="24" rx="4" fill="#FFFDF8" stroke="#6E2E1E" stroke-width="3"/><rect x="27" y="38" width="10" height="16" rx="2" fill="#7AB6DE"/></svg>`,
-    EP010: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="14" fill="#FFBE3B" stroke="#C67608" stroke-width="3"/><g stroke="#FFBE3B" stroke-width="4" stroke-linecap="round"><line x1="32" y1="7" x2="32" y2="13"/><line x1="32" y1="51" x2="32" y2="57"/><line x1="7" y1="32" x2="13" y2="32"/><line x1="51" y1="32" x2="57" y2="32"/></g></svg>`,
-    EP011: `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="21" fill="#E85D4A" stroke="#7A2218" stroke-width="3"/><path d="M13 28 Q32 39 51 28" fill="none" stroke="#FFE29A" stroke-width="6"/></svg>`,
-    EP012: `<svg viewBox="0 0 64 64"><rect x="16" y="16" width="32" height="36" rx="10" fill="#4BA3E3" stroke="#1E527A" stroke-width="3"/><rect x="22" y="32" width="20" height="13" rx="5" fill="#FFF6DE" stroke="#1E527A" stroke-width="2.5"/></svg>`,
-    EP013: `<svg viewBox="0 0 64 64"><text x="32" y="45" text-anchor="middle" font-size="36" font-weight="800" fill="#2E4540">123</text></svg>`,
-    EP014: `<svg viewBox="0 0 64 64"><polygon points="32,8 39,24 56,26 43,38 47,55 32,46 17,55 21,38 8,26 25,24" fill="#F7C23C" stroke="#9C710E" stroke-width="3" stroke-linejoin="round"/></svg>`,
-    EP015: `<svg viewBox="0 0 64 64"><circle cx="23" cy="34" r="15" fill="#E5583B" stroke="#8F2816" stroke-width="2.8"/><circle cx="48" cy="41" r="8" fill="#E5583B" stroke="#8F2816" stroke-width="2.5"/></svg>`,
-  };
-  return svgs[ep.id] || svgs.EP014;
-}
-
-function renderFilters() {
-  const bar = document.getElementById("filterBar");
-  bar.innerHTML = "";
-  ISLANDS.forEach(isl => {
-    const cnt = isl === "全部" ? EPS.length : EPS.filter(e => e.island === isl).length;
-    const b = document.createElement("button");
-    b.className = "f-pill" + (isl === activeIsland ? " active" : "");
-    b.textContent = isl === "全部" ? `全部 (${cnt})` : `${isl} (${cnt})`;
-    b.onclick = () => { activeIsland = isl; renderFilters(); renderTrail(); };
-    bar.appendChild(b);
-  });
-}
-
-function renderTrail() {
-  const doneSet = getDoneSet();
-  document.getElementById("starTxt").textContent = `${doneSet.size} / ${EPS.length}`;
-  const shown = activeIsland === "全部" ? EPS : EPS.filter(e => e.island === activeIsland);
-  document.getElementById("mapTitle").textContent = activeIsland === "全部"
-    ? "小镇冒险路线（1–15 集）"
-    : `${activeIsland}（${shown.length} 集）`;
-
-  const trail = document.getElementById("trail");
-  trail.innerHTML = "";
-
-  shown.forEach((ep, idx) => {
-    const isEp1 = ep.id === "EP001";
-    const isDone = doneSet.has(ep.id);
-    const href = isEp1 ? "./ep001.html" : `./play.html?ep=${ep.id}`;
-    const side = idx % 2 === 0 ? "left" : "right";
-    const wordsPreview = ep.items.slice(0, 4).map(x => x.word).join(" · ");
-
-    const row = document.createElement("div");
-    row.className = `stop-row ${side}`;
-
-    const ribbon = isEp1
-      ? `<span class="ribbon hot">全屏实景新版</span>`
-      : `<span class="ribbon">${ep.island}</span>`;
-
-    const starBadge = isDone
-      ? `<div class="done-star"><svg width="13" height="13" viewBox="0 0 24 24" fill="#FFF"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg></div>`
-      : "";
-
-    const wsHtml = ep.worksheet
-      ? `<a class="ws-bar" href="${ep.worksheet}" download="兔猫英语小镇-${ep.id}-涂色纸.jpg" onclick="event.stopPropagation()">下载 A4 涂色纸</a>`
-      : "";
-
-    row.innerHTML = `
-      <a class="stop-node ${isEp1 ? 'new-stage' : ''}" href="${href}" style="--tint:${ep.color}">
-        <div class="medallion">
-          <span class="ep-num">${ep.id}</span>
-          ${badgeGraphic(ep)}
-          ${starBadge}
-        </div>
-        <div class="stop-body">
-          <div class="stop-top">
-            <h3>${ep.title}</h3>
-            ${ribbon}
-          </div>
-          <div class="stop-sub">${wordsPreview}</div>
-          ${wsHtml}
-        </div>
-        <div class="go-dot">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="8,5 19,12 8,19"/></svg>
-        </div>
-      </a>
-    `;
-    trail.appendChild(row);
-  });
-}
-
-renderFilters();
-renderTrail();
-</script>
+  <script src="./data/v3-catalog.js"></script>
+  <script src="./assets/v3/home.js"></script>
 </body>
 </html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#FFF2D6">
+  <title>兔猫英语小镇 · 绘本互动剧场</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./img/v3/pwa/apple-touch-icon.png">
+  <link rel="stylesheet" href="./assets/v3/styles.css">
+  <link rel="stylesheet" href="./assets/v3/stage.css">
+</head>
+<body class="stage-body">
+  <div class="stage-shell" id="stageShell">
+    <!-- 顶栏儿童 HUD：回地图 + 三步图形进度条 + 重听 + 1.5s长按家长角 -->
+    <header class="stage-hud">
+      <div class="hud-left">
+        <a class="icon-orb clay-press" href="./index.html" aria-label="返回小镇地图">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5"/></svg>
+        </a>
+        <div class="ep-title-chip" id="epTitleChip">EP001 · 认识颜色</div>
+      </div>
+
+      <nav class="step-switcher" aria-label="互动步骤切换">
+        <button class="step-tab active" id="tabExplore" type="button">
+          <span>① 点读</span>
+          <svg class="s-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
+        </button>
+        <button class="step-tab" id="tabQuiz" type="button">
+          <span>② 寻宝</span>
+          <svg class="s-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
+        </button>
+        <button class="step-tab" id="tabSpeak" type="button">
+          <span>③ 跟读</span>
+          <svg class="s-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21 7 14.2 2 9.3l6.9-1z"/></svg>
+        </button>
+      </nav>
+
+      <div class="hud-right">
+        <button class="icon-orb clay-press" id="btnReplay" type="button" aria-label="再听一遍">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+        </button>
+
+        <button class="parent-lock-btn" id="btnStageParent" type="button" aria-label="长按打开家长剧本">
+          <span class="lock-ring-wrap">
+            <svg class="lock-ring-svg" viewBox="0 0 32 32">
+              <circle cx="16" cy="16" r="13" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="3"/>
+              <circle class="lock-ring-progress" id="stageLockRing" cx="16" cy="16" r="13"/>
+            </svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="3"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </span>
+          <span>家长</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="toast-tip" id="stageLockToast">👶 按住「家长」1.5 秒查看陪玩剧本与涂色卡</div>
+
+    <!-- 精装双页对开绘本舞台 -->
+    <main class="storybook-frame">
+      <!-- 左页（平板）/ 上半屏（手机）：实景小剧场 + 逐词高亮字幕 + 双主角 + 收集槽 -->
+      <section class="theater-page" id="theaterPage">
+        <div class="theater-top">
+          <span class="scene-loc-pill" id="sceneLocPill">暖阳小镇广场</span>
+        </div>
+
+        <div class="karaoke-banner" id="karaokeBanner">
+          <div class="karaoke-en" id="karaokeEn">Tap a picture!</div>
+          <div class="karaoke-zh" id="karaokeZh">点一点右边水粉画卡，听折折兔读绘本！</div>
+        </div>
+
+        <div class="theater-bottom">
+          <button class="stage-actor rabbit" id="stageRabbit" type="button" aria-label="折折兔互动">
+            <img id="stageRabbitImg" src="./img/v3/actors/rabbit.png" alt="折折兔">
+          </button>
+
+          <div class="pocket-tray" id="pocketTray"></div>
+
+          <button class="stage-actor cat" id="stageCat" type="button" aria-label="团团猫互动">
+            <img id="stageCatImg" src="./img/v3/actors/cat.png" alt="团团猫">
+          </button>
+        </div>
+      </section>
+
+      <!-- 右页（平板）/ 下半屏（手机）：三步互动面板 -->
+      <section class="deck-page" id="deckPage">
+        <div class="deck-header">
+          <div class="deck-instruction" id="deckInstruction">👆 点一点 4 张水粉卡收集宝物</div>
+          <div class="sub-progress-dots" id="subDots"></div>
+        </div>
+
+        <!-- Step 1: 情景探索点读 -->
+        <div class="explore-grid" id="viewExplore"></div>
+
+        <!-- Step 2: 无剧透听音寻宝 -->
+        <div class="quiz-arena" id="viewQuiz" style="display:none">
+          <div class="listen-bar">
+            <div class="think-dots">
+              <span>仔细听口令</span>
+              <span class="t-orb" id="think0"></span>
+              <span class="t-orb" id="think1"></span>
+              <span class="t-orb" id="think2"></span>
+            </div>
+            <button class="listen-again-pill clay-press" id="btnQuizReplay" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+              再听口令
+            </button>
+          </div>
+          <div class="quiz-pair-grid" id="quizPairGrid"></div>
+        </div>
+
+        <!-- Step 3: 开口跟读声波话筒 -->
+        <div class="speak-arena" id="viewSpeak" style="display:none">
+          <div class="speak-showcase">
+            <img id="speakImg" src="" alt="">
+            <div class="speak-word-big" id="speakWordBig">Red</div>
+            <div class="speak-zh-sub" id="speakZhSub">红色 · 红苹果</div>
+          </div>
+
+          <div class="mic-dock">
+            <div class="wave-bars" id="waveBars"></div>
+            <div class="mic-btn-row">
+              <button class="icon-orb clay-press" id="btnModelVoice" type="button" aria-label="听折折兔示范">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.7"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+              </button>
+
+              <button class="mega-mic-btn clay-press" id="btnMicRecord" type="button" aria-label="点一下跟读">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+              </button>
+
+              <button class="kid-voice-btn clay-press" id="btnPlayKidVoice" type="button">
+                🎧 听宝贝读
+              </button>
+            </div>
+            <div class="speak-status-txt" id="speakStatusTxt">点橘色小话筒，跟着折折兔大声读出来！</div>
+          </div>
+        </div>
+
+        <button class="next-step-banner clay-press" id="nextStepBanner" type="button"></button>
+      </section>
+    </main>
+  </div>
+
+  <!-- 发光引导小手 -->
+  <div class="guide-finger" id="guideFinger">
+    <svg viewBox="0 0 64 64" width="56" height="56">
+      <path d="M27 10c-3.3 0-6 2.7-6 6v17.5l-3.6-3.1c-2.6-2.2-6.5-1.9-8.7.7-2 2.4-1.8 6 .4 8.2L22 52.2c2.8 2.8 6.6 4.3 10.6 4.3h7.9c8.6 0 15.5-7 15.5-15.5V29c0-3.3-2.7-6-6-6-1.2 0-2.4.4-3.3 1-.7-2.6-3-4.5-5.7-4.5-1.5 0-2.9.6-4 1.6-.9-2.2-3.1-3.6-5.5-3.6-1.1 0-2.2.3-3.1.9V16c0-3.3-2.7-6-6-6z" fill="#FFFDF8" stroke="#26403B" stroke-width="3.6" stroke-linejoin="round"/>
+      <circle cx="27" cy="14" r="3.5" fill="#FF9E44"/>
+    </svg>
+  </div>
+
+  <!-- 弹窗 1：本集三星通关贴纸入册大派对 -->
+  <div class="drawer-mask" id="partyModal">
+    <div class="drawer-book" style="max-width:480px;text-align:center">
+      <div style="display:inline-block;background:#FFF2CC;border:2px solid #F6B93B;color:#9C5B08;font-size:13px;font-weight:900;padding:4px 14px;border-radius:999px">
+        ✨ 新水粉贴纸已收入画册 ✨
+      </div>
+      <h2 id="partyTitle" style="margin:10px 0 4px;font-size:26px;color:#26403B">太棒啦！三星通关！</h2>
+      <p id="partySub" style="margin:0;font-size:14px;font-weight:800;color:#6E5438"></p>
+      <div class="party-stickers" id="partyStickers"></div>
+      <div class="party-actions">
+        <a class="party-btn gold clay-press" href="./index.html">🗺️ 小镇地图</a>
+        <a class="party-btn green clay-press" id="partyNextEpBtn" href="./stage.html?ep=EP015">下一集冒险 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 弹窗 2：本集家长 1 分钟剧本 + A4 打印卡 -->
+  <div class="drawer-mask" id="stageParentModal">
+    <div class="drawer-book" style="max-width:560px">
+      <div class="drawer-head">
+        <h2 id="spModalTitle">👨‍👩‍👧 本集 1 分钟陪玩剧本</h2>
+        <button class="close-circle clay-press" id="closeStageParentBtn" type="button" aria-label="关闭">✕</button>
+      </div>
+      <div class="script-card" id="spScriptCard"></div>
+      <div class="ws-download-box" id="spWsBox"></div>
+    </div>
+  </div>
+
+  <script src="./data/v3-catalog.js"></script>
+  <script src="./assets/v3/stage.js"></script>
+</body>
+</html>

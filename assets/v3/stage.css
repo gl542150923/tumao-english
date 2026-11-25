@@ -1,0 +1,968 @@
+/* 兔猫英语小镇 V3.0 · 单集精装双页对开绘本剧场（100dvh 零滚动溢出） */
+.stage-body {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 10%, #FFF5DC 0%, #DFEFE0 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-shell {
+  width: 100%;
+  max-width: 1220px;
+  height: 100dvh;
+  margin: 0 auto;
+  padding: max(8px, env(safe-area-inset-top)) 10px max(8px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 顶部极简儿童 HUD */
+.stage-hud {
+  height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.hud-left, .hud-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.icon-orb {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #FFFDF9 0%, #FCE8C3 100%);
+  color: var(--forest);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  box-shadow: 0 4px 0 #D8B170, 0 8px 16px rgba(89, 50, 22, 0.14);
+}
+
+.stage-hud .parent-lock-btn {
+  min-height: 42px;
+  width: 42px;
+  padding: 0;
+  justify-content: center;
+}
+.stage-hud .parent-lock-btn > span:last-child {
+  display: none;
+}
+@media (min-width: 560px) {
+  .stage-hud .parent-lock-btn {
+    width: auto;
+    padding: 5px 12px 5px 9px;
+  }
+  .stage-hud .parent-lock-btn > span:last-child {
+    display: inline;
+  }
+}
+
+.ep-title-chip {
+  display: none;
+  background: rgba(255, 253, 248, 0.92);
+  border: 2.5px solid #FFFFFF;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--forest);
+  box-shadow: 0 4px 10px rgba(89, 50, 22, 0.08);
+  white-space: nowrap;
+}
+
+/* 三步成长胶囊导航 */
+.step-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255, 252, 244, 0.92);
+  border: 2.5px solid #FFFFFF;
+  border-radius: 999px;
+  padding: 3px;
+  box-shadow: 0 4px 0 #DAC39C, 0 8px 18px rgba(89, 50, 22, 0.12);
+  min-width: 0;
+}
+
+.step-tab {
+  min-height: 34px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #6E5840;
+  font-size: 12px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+.step-tab.active {
+  background: var(--ep-accent, #EB6834);
+  color: #FFFFFF;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+}
+.step-tab .s-star {
+  width: 14px;
+  height: 14px;
+  color: rgba(120, 96, 68, 0.3);
+}
+.step-tab.active .s-star {
+  color: rgba(255, 255, 255, 0.55);
+}
+.step-tab.done .s-star {
+  color: #F6B93B;
+}
+.step-tab.active.done .s-star {
+  color: #FFE57F;
+}
+
+/* 精装绘本主体（手机上下分屏 / 平板左右对开书页） */
+.storybook-frame {
+  flex: 1;
+  min-height: 0;
+  background: linear-gradient(180deg, #FFFDF9 0%, #FFF6E4 100%);
+  border: 4.5px solid #FFFFFF;
+  border-radius: 30px;
+  box-shadow: 0 10px 0 #D8BA87, 0 20px 44px rgba(38, 64, 59, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 左页 / 上半屏：兔猫实景剧场舞台 */
+.theater-page {
+  position: relative;
+  height: 33%;
+  min-height: 186px;
+  max-height: 265px;
+  background-color: #E8F1DF;
+  background-size: cover;
+  background-position: center 62%;
+  transition: background-image 0.38s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 12px 8px;
+  overflow: hidden;
+  border-bottom: 3.5px solid rgba(255, 255, 255, 0.92);
+}
+.theater-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 250, 238, 0.52) 0%, rgba(255, 250, 238, 0.06) 44%, rgba(30, 50, 45, 0.28) 100%);
+  pointer-events: none;
+}
+
+.theater-top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.scene-loc-pill {
+  background: rgba(255, 253, 248, 0.92);
+  border: 2px solid #FFFFFF;
+  color: var(--wood);
+  font-size: 11.5px;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* StoryWeaver 风格逐词卡拉 OK 高亮气泡 */
+.karaoke-banner {
+  position: relative;
+  z-index: 4;
+  margin: 2px auto 0;
+  max-width: 94%;
+  background: rgba(255, 253, 249, 0.96);
+  border: 3px solid #F6C36B;
+  border-radius: 20px;
+  padding: 6px 14px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(89, 50, 22, 0.16);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.karaoke-en {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--forest);
+  line-height: 1.25;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+.k-tok {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 8px;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s, color 0.15s;
+}
+.k-tok.TargetWord {
+  color: var(--ep-accent, #D95338);
+}
+.k-tok.speaking {
+  background: #FFE07D;
+  color: #522906;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 3px 0 #DF9E28;
+}
+.karaoke-zh {
+  font-size: 12px;
+  font-weight: 800;
+  color: #6E5438;
+  margin-top: 2px;
+}
+
+/* 舞台主角与底部迷你宝物槽 */
+.theater-bottom {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.stage-actor {
+  background: none;
+  border: none;
+  padding: 0;
+  pointer-events: auto;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stage-actor img {
+  height: 98px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(25, 42, 38, 0.3));
+}
+.stage-actor.cat img {
+  height: 86px;
+}
+.stage-actor.talking img {
+  animation: talkBob 0.42s ease-in-out infinite;
+}
+.stage-actor.cheer img {
+  animation: joyJump 0.52s cubic-bezier(0.34, 1.56, 0.64, 1) 2;
+}
+
+.pocket-tray {
+  pointer-events: auto;
+  display: flex;
+  gap: 5px;
+  background: rgba(255, 249, 235, 0.9);
+  border: 2.5px solid #FFFFFF;
+  padding: 4px 7px;
+  border-radius: 16px;
+  box-shadow: 0 5px 14px rgba(50, 32, 14, 0.18);
+  margin-bottom: 2px;
+  max-width: calc(100% - 140px);
+  overflow: hidden;
+}
+.pocket-tray.many .tray-mini {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+.pocket-tray.many .tray-mini img {
+  width: 22px;
+  height: 22px;
+}
+.tray-mini {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(226, 206, 172, 0.45);
+  border: 1.5px dashed rgba(138, 96, 48, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tray-mini.collected {
+  background: #FFFFFF;
+  border: 2px solid #F6B93B;
+}
+.tray-mini.collected:active {
+  transform: scale(0.86);
+}
+.tray-mini img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  opacity: 0.2;
+  filter: grayscale(1);
+  transition: all 0.3s ease;
+}
+.tray-mini.collected img {
+  opacity: 1;
+  filter: none;
+}
+
+/* 右页 / 下半屏：超大触控互动区 */
+.deck-page {
+  flex: 1;
+  min-height: 0;
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  background: var(--ep-paper, #FFF8EB);
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.deck-instruction {
+  font-size: 14.5px;
+  font-weight: 900;
+  color: var(--forest);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sub-progress-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.s-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #E5D6BC;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.s-dot.on {
+  background: #F5A623;
+  transform: scale(1.22);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.25);
+}
+
+/* Step 1：自适应 4/5/6 张大画幅水粉点读云朵卡 */
+.explore-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.explore-grid.count-5,
+.explore-grid.count-6 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+.explore-grid.count-5 .gouache-card,
+.explore-grid.count-6 .gouache-card {
+  padding: 5px 6px 4px;
+  border-radius: 20px;
+}
+.explore-grid.count-5 .card-word-pill,
+.explore-grid.count-6 .card-word-pill {
+  font-size: 14px;
+  padding: 1px 10px;
+  margin-top: 2px;
+}
+.explore-grid.count-5 .card-zh,
+.explore-grid.count-6 .card-zh {
+  font-size: 10.5px;
+  margin-top: 1px;
+}
+
+.gouache-card {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--w-soft, #FFF5E4) 100%);
+  border: 3.5px solid #FFFFFF;
+  border-radius: 24px;
+  padding: 8px 8px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 0 #DFC9A3, 0 10px 20px rgba(89, 50, 22, 0.1);
+  overflow: hidden;
+}
+.gouache-card.active-card {
+  border-color: var(--w-color, #EB6834);
+  box-shadow: 0 6px 0 var(--w-color, #EB6834), 0 12px 24px rgba(89, 50, 22, 0.18);
+}
+.gouache-card .art-wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.gouache-card .art-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(89, 50, 22, 0.15));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gouache-card.active-card .art-wrap img {
+  transform: scale(1.07);
+}
+.card-word-pill {
+  margin-top: 4px;
+  padding: 2px 13px;
+  border-radius: 999px;
+  background: var(--w-color, #26403B);
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+}
+.card-zh {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #6B533B;
+  margin-top: 2px;
+}
+.card-star-corner {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: #D9CCB8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gouache-card.visited .card-star-corner {
+  background: #FFE07D;
+  color: #C97A0A;
+}
+
+/* Step 2：无剧透听音寻宝（超大双卡对比 + 3秒留白思考圆点） */
+.quiz-arena {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.listen-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 3px solid #F3DFBA;
+  border-radius: 20px;
+  padding: 8px 13px;
+  box-shadow: 0 4px 12px rgba(89, 50, 22, 0.07);
+}
+.think-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 900;
+  color: #7D5A32;
+}
+.t-orb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #EDE0C8;
+  transition: all 0.28s ease;
+}
+.t-orb.lit {
+  background: #F6B93B;
+  box-shadow: 0 0 8px rgba(246, 185, 59, 0.7);
+  transform: scale(1.15);
+}
+.listen-again-pill {
+  border: none;
+  background: linear-gradient(180deg, #FFAD4D 0%, #E86A2C 100%);
+  color: #FFFFFF;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 4px 0 #B54414;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quiz-pair-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.quiz-choice {
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9EC 100%);
+  border: 4px solid #FFFFFF;
+  border-radius: 28px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 0 #DEC8A2, 0 14px 26px rgba(89, 50, 22, 0.12);
+  overflow: hidden;
+}
+.quiz-choice .q-img-wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.quiz-choice .q-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(89, 50, 22, 0.16));
+}
+.quiz-reveal-tag {
+  margin-top: 8px;
+  min-height: 32px;
+  padding: 4px 16px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 900;
+  background: transparent;
+  color: transparent;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.quiz-choice.right-pick {
+  border-color: #43B575;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E7FAEE 100%);
+  box-shadow: 0 8px 0 #2A8A54, 0 0 0 5px rgba(67, 181, 117, 0.24);
+}
+.quiz-choice.right-pick .quiz-reveal-tag {
+  background: #359E63;
+  color: #FFFFFF;
+}
+.quiz-choice.gentle-shake {
+  animation: softWobble 0.42s ease;
+}
+.quiz-choice.hint-glow {
+  animation: warmHintGlow 1.15s ease-in-out infinite;
+}
+
+/* Step 3：开口跟读声波小话筒（Speak & Shine） */
+.speak-arena {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.speak-showcase {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.speak-showcase img {
+  max-height: 146px;
+  max-width: 200px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px rgba(89, 50, 22, 0.18));
+}
+.speak-word-big {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--ep-accent, #D95338);
+  line-height: 1.1;
+}
+.speak-zh-sub {
+  font-size: 13px;
+  font-weight: 800;
+  color: #6E5438;
+  margin-top: 2px;
+}
+
+.mic-dock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.wave-bars {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.w-bar {
+  width: 7px;
+  height: 8px;
+  border-radius: 999px;
+  background: #E4CFA8;
+  transition: height 0.08s ease, background-color 0.15s;
+}
+.w-bar.live {
+  background: #F59E0B;
+}
+
+.mic-btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.mega-mic-btn {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #FF9E44 0%, #E55828 100%);
+  color: #FFFFFF;
+  border: 4.5px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 0 #A83712, 0 14px 28px rgba(229, 88, 40, 0.35);
+}
+.mega-mic-btn.recording {
+  background: linear-gradient(180deg, #47C47E 0%, #259457 100%);
+  box-shadow: 0 8px 0 #18663B, 0 0 0 10px rgba(71, 196, 126, 0.25);
+  animation: micPulse 0.9s ease-in-out infinite;
+}
+
+.kid-voice-btn {
+  min-height: 46px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: #FFF3D4;
+  border: 3px solid #FFFFFF;
+  color: #6B4212;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 4px 0 #DFBA78;
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+.kid-voice-btn.ready {
+  display: inline-flex;
+}
+
+.speak-status-txt {
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--forest);
+}
+
+/* 底部下一步横幅提示（完成单步时轻盈浮现） */
+.next-step-banner {
+  margin-top: 8px;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #4CC482 0%, #2B945B 100%);
+  color: #FFFFFF;
+  font-size: 15.5px;
+  font-weight: 900;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 0 #1C693F, 0 10px 22px rgba(43, 148, 91, 0.28);
+}
+.next-step-banner.show {
+  display: flex;
+  animation: popUpIn 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 发光引导小手（低幼零文字脚手架） */
+.guide-finger {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s;
+  filter: drop-shadow(0 6px 10px rgba(38, 64, 59, 0.32));
+}
+.guide-finger.visible {
+  opacity: 1;
+  animation: fingerTap 1.05s ease-in-out infinite;
+}
+
+/* 抛物线飞行宝物克隆 & 星星粒子 */
+.flying-sticker {
+  position: fixed;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  z-index: 95;
+  pointer-events: none;
+  transition: transform 0.68s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.68s ease;
+  filter: drop-shadow(0 12px 18px rgba(245, 166, 35, 0.55));
+}
+.sparkle-star {
+  position: fixed;
+  pointer-events: none;
+  z-index: 96;
+  animation: sparkleBurst 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 通关贴纸入册派对弹窗 */
+.party-stickers {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+.party-item {
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: #FFF9EB;
+  border: 3px solid #F6B93B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  box-shadow: 0 5px 0 #DF9E28;
+  animation: partyFloat 1.6s ease-in-out var(--d, 0s) infinite;
+}
+.party-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.party-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.party-btn {
+  flex: 1;
+  min-height: 50px;
+  border-radius: 20px;
+  font-size: 15.5px;
+  font-weight: 900;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.party-btn.green {
+  background: linear-gradient(180deg, #4CC482 0%, #2B945B 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 0 #1C693F;
+}
+.party-btn.gold {
+  background: linear-gradient(180deg, #FFE07D 0%, #F5B027 100%);
+  color: #522906;
+  box-shadow: 0 6px 0 #C2800E;
+}
+
+/* ==========================================================================
+   iPad / 平板横屏断点（≥ 820px）：切换为左右对开精装立体绘本！
+   ========================================================================== */
+@media (min-width: 820px) {
+  .stage-shell {
+    padding: 14px 24px 18px;
+    gap: 12px;
+  }
+  .ep-title-chip {
+    display: inline-flex;
+  }
+  .step-tab {
+    padding: 6px 16px;
+    font-size: 14px;
+  }
+  .storybook-frame {
+    flex-direction: row;
+    border-radius: 36px;
+    border-width: 6px;
+  }
+  /* 精装绘本中缝书脊立体折痕 */
+  .storybook-frame::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 44%;
+    width: 24px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, rgba(89, 50, 22, 0) 0%, rgba(89, 50, 22, 0.12) 48%, rgba(255, 255, 255, 0.55) 54%, rgba(89, 50, 22, 0) 100%);
+    pointer-events: none;
+    z-index: 20;
+  }
+  .theater-page {
+    width: 44%;
+    height: 100%;
+    max-height: none;
+    border-bottom: none;
+    padding: 18px 20px 16px;
+  }
+  .karaoke-banner {
+    padding: 10px 18px;
+    border-radius: 24px;
+  }
+  .karaoke-en {
+    font-size: 22px;
+  }
+  .karaoke-zh {
+    font-size: 13.5px;
+  }
+  .stage-actor img {
+    height: 162px;
+  }
+  .stage-actor.cat img {
+    height: 142px;
+  }
+  .tray-mini {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+  .tray-mini img {
+    width: 34px;
+    height: 34px;
+  }
+  .deck-page {
+    width: 56%;
+    height: 100%;
+    padding: 18px 24px 20px;
+  }
+  .explore-grid {
+    gap: 14px;
+  }
+  .explore-grid.count-5,
+  .explore-grid.count-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .explore-grid.count-5 .card-word-pill,
+  .explore-grid.count-6 .card-word-pill {
+    font-size: 17px;
+    padding: 2px 13px;
+  }
+  .explore-grid.count-5 .card-zh,
+  .explore-grid.count-6 .card-zh {
+    font-size: 12px;
+  }
+  .card-word-pill {
+    font-size: 20px;
+    padding: 3px 16px;
+  }
+  .card-zh {
+    font-size: 13px;
+  }
+  .speak-showcase img {
+    max-height: 210px;
+    max-width: 260px;
+  }
+  .speak-word-big {
+    font-size: 36px;
+  }
+  .mega-mic-btn {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+@keyframes talkBob {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50% { transform: translateY(-7px) scaleY(1.03); }
+}
+@keyframes joyJump {
+  0%, 100% { transform: translateY(0); }
+  45% { transform: translateY(-20px) rotate(-3deg); }
+}
+@keyframes softWobble {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px) rotate(-2deg); }
+  75% { transform: translateX(7px) rotate(2deg); }
+}
+@keyframes warmHintGlow {
+  0%, 100% { box-shadow: 0 8px 0 #DEC8A2, 0 0 0 0 rgba(246, 185, 59, 0); transform: scale(1); }
+  50% { box-shadow: 0 8px 0 #DF9E28, 0 0 0 8px rgba(246, 185, 59, 0.35); transform: scale(1.025); }
+}
+@keyframes micPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+@keyframes popUpIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fingerTap {
+  0%, 100% { transform: translate(-45%, -35%) scale(1); }
+  45% { transform: translate(-45%, -22%) scale(0.9); }
+}
+@keyframes sparkleBurst {
+  0% { opacity: 1; transform: translate(0, 0) scale(0.5) rotate(0deg); }
+  100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.25) rotate(190deg); }
+}
+@keyframes partyFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}

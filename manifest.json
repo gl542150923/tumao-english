@@ -1,0 +1,22 @@
+{
+  "name": "兔猫英语小镇 · 3-6岁绘本点读乐园",
+  "short_name": "兔猫点读",
+  "description": "面向 3–6 岁儿童的低刺激护眼暖阳水粉英语互动绘本乐园，手机与平板双端自适应。",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFF8EB",
+  "theme_color": "#FFF2D6",
+  "icons": [
+    {
+      "src": "./img/v3/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/v3/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
