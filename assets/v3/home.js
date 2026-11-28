@@ -1,4 +1,4 @@
-/* 兔猫英语小镇 V3.0 · 全量 36 集首页地图、分类贴纸画册与 1.5s 长按家长百宝箱 */
+/* 兔猫英语小镇 V3.0 · 全量 41 集首页地图、分类贴纸画册与 1.5s 长按家长百宝箱 */
 (function () {
   const DATA = window.TUMAO_V3;
   const STAGE_EPS = DATA.stageEpisodes;
@@ -210,7 +210,7 @@
     if (who === "rabbit") {
       rBtn.classList.remove("hop"); void rBtn.offsetWidth; rBtn.classList.add("hop");
       rImg.src = "./img/v3/actors/rabbit-talk.png";
-      bub.textContent = "全 36 集绘本馆开放啦！";
+      bub.textContent = `全 ${ALL_EP_IDS.length} 集绘本馆开放啦！`;
       bub.classList.add("show");
       playClip("./audio/v3/sfx/chime.mp3", () => {
         rImg.src = "./img/v3/actors/rabbit.png";
@@ -234,7 +234,7 @@
   document.getElementById("heroRabbit").onclick = () => pokeHero("rabbit");
   document.getElementById("heroCat").onclick = () => pokeHero("cat");
 
-  /* 贴纸收集册弹窗（支持按六大主题岛筛选全 36 集贴纸） */
+  /* 贴纸收集册弹窗（支持按六大主题岛筛选全 41 集贴纸） */
   function renderStickerBookContent() {
     const prog = loadProgress();
     const unlocked = getUnlockedStickers(prog);
@@ -299,7 +299,7 @@
     if (e.target.id === "stickerModal") e.target.classList.remove("open");
   };
 
-  /* 1.5 秒长按圆环童锁（家长角：支持全 36 集陪玩剧本与 A4 打印卡切换） */
+  /* 1.5 秒长按圆环童锁（家长角：支持全 41 集陪玩剧本与 A4 打印卡切换） */
   const gateBtn = document.getElementById("btnParentGate");
   const ringEl = document.getElementById("lockRingCircle");
   const toastEl = document.getElementById("lockToast");
