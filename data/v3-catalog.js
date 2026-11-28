@@ -4124,6 +4124,541 @@ window.TUMAO_V3 = {
           "ansAudio": "./audio/v3/EP036/ans_silver.mp3"
         }
       ]
+    },
+    "EP037": {
+      "id": "EP037",
+      "num": 37,
+      "title": "动动小手和小脚",
+      "enTitle": "hands · feet · knees · shoulders",
+      "subtitle": "第 37 集 · 阳光亲子律动角",
+      "island": "身体日常",
+      "hook": "在家放电全身律动操 · 4 个身体部位词",
+      "theme": {
+        "paper": "#F6FBEF",
+        "accent": "#4D8B31",
+        "accentLip": "#2E5B1B",
+        "pillBg": "#E5F5D4",
+        "ink": "#243E16"
+      },
+      "defaultScene": "./img/v3/scenes/ep037_main.jpg",
+      "sceneLabel": "阳光亲子律动角",
+      "worksheet": "./worksheets/EP037-亲子涂色连线卡.jpg",
+      "parentScript": [
+        {
+          "role": "👩 妈妈领做早操",
+          "line": "Clap your <strong>hands</strong>! Stomp your <strong>feet</strong>!"
+        },
+        {
+          "role": "🧒 宝贝跟着指认",
+          "line": "Touch my <strong>shoulders</strong>! Touch my <strong>knees</strong>!"
+        },
+        {
+          "role": "👩 洗手穿袜延伸",
+          "line": "Let's wash your <strong>hands</strong>! Socks on your <strong>feet</strong>!"
+        },
+        {
+          "role": "🌟 欢呼打卡收尾",
+          "line": "Hurray! Great body workout!"
+        }
+      ],
+      "words": [
+        {
+          "key": "hands",
+          "word": "Hands",
+          "zh": "小手",
+          "sentence": "Clap your hands!",
+          "highlight": "hands",
+          "color": "#15803D",
+          "soft": "#DCFCE7",
+          "cardImg": "./img/v3/cards/EP037/hands.png",
+          "sceneImg": "./img/v3/scenes/ep037_w1.jpg",
+          "sceneTag": "洗手拍手互动时用",
+          "distractor": "feet",
+          "leadAudio": "./audio/v3/EP037/lead_hands.mp3",
+          "teachAudio": "./audio/v3/EP037/teach_hands.mp3",
+          "quizAudio": "./audio/v3/EP037/quiz_hands.mp3",
+          "ansAudio": "./audio/v3/EP037/ans_hands.mp3"
+        },
+        {
+          "key": "feet",
+          "word": "Feet",
+          "zh": "小脚",
+          "sentence": "Stomp your feet!",
+          "highlight": "feet",
+          "color": "#0284C7",
+          "soft": "#E0F2FE",
+          "cardImg": "./img/v3/cards/EP037/feet.png",
+          "sceneImg": "./img/v3/scenes/ep037_w2.jpg",
+          "sceneTag": "穿鞋袜踩地毯时说",
+          "distractor": "hands",
+          "leadAudio": "./audio/v3/EP037/lead_feet.mp3",
+          "teachAudio": "./audio/v3/EP037/teach_feet.mp3",
+          "quizAudio": "./audio/v3/EP037/quiz_feet.mp3",
+          "ansAudio": "./audio/v3/EP037/ans_feet.mp3"
+        },
+        {
+          "key": "knees",
+          "word": "Knees",
+          "zh": "膝盖",
+          "sentence": "Touch your knees!",
+          "highlight": "knees",
+          "color": "#EA580C",
+          "soft": "#FFEDD5",
+          "cardImg": "./img/v3/cards/EP037/knees.png",
+          "sceneImg": "./img/v3/scenes/ep037_w3.jpg",
+          "sceneTag": "蹲起做早操拍膝盖",
+          "distractor": "shoulders",
+          "leadAudio": "./audio/v3/EP037/lead_knees.mp3",
+          "teachAudio": "./audio/v3/EP037/teach_knees.mp3",
+          "quizAudio": "./audio/v3/EP037/quiz_knees.mp3",
+          "ansAudio": "./audio/v3/EP037/ans_knees.mp3"
+        },
+        {
+          "key": "shoulders",
+          "word": "Shoulders",
+          "zh": "肩膀",
+          "sentence": "Touch your shoulders!",
+          "highlight": "shoulders",
+          "color": "#7C3AED",
+          "soft": "#EDE9FE",
+          "cardImg": "./img/v3/cards/EP037/shoulders.png",
+          "sceneImg": "./img/v3/scenes/ep037_w4.jpg",
+          "sceneTag": "耸肩伸懒腰时互动",
+          "distractor": "knees",
+          "leadAudio": "./audio/v3/EP037/lead_shoulders.mp3",
+          "teachAudio": "./audio/v3/EP037/teach_shoulders.mp3",
+          "quizAudio": "./audio/v3/EP037/quiz_shoulders.mp3",
+          "ansAudio": "./audio/v3/EP037/ans_shoulders.mp3"
+        }
+      ]
+    },
+    "EP038": {
+      "id": "EP038",
+      "num": 38,
+      "title": "爷爷奶奶和小宝宝",
+      "enTitle": "Grandpa · Grandma · baby · family",
+      "subtitle": "第 38 集 · 乡间木屋大客厅",
+      "island": "情商社交",
+      "hook": "周末去看爷爷奶奶 · 4 个暖心家庭称呼",
+      "theme": {
+        "paper": "#FAF5FE",
+        "accent": "#7B4B94",
+        "accentLip": "#512B66",
+        "pillBg": "#EFE3FA",
+        "ink": "#3B1D4E"
+      },
+      "defaultScene": "./img/v3/scenes/ep038_main.jpg",
+      "sceneLabel": "乡间木屋大客厅",
+      "worksheet": "./worksheets/EP038-亲子涂色连线卡.jpg",
+      "parentScript": [
+        {
+          "role": "👩 翻开全家相册",
+          "line": "Who is this? Point to <strong>Grandpa</strong> and <strong>Grandma</strong>!"
+        },
+        {
+          "role": "🧒 开心指认介绍",
+          "line": "This is <strong>Grandpa</strong>! I love <strong>Grandma</strong>!"
+        },
+        {
+          "role": "👩 指小时候照片",
+          "line": "Look! You were a cute little <strong>baby</strong>!"
+        },
+        {
+          "role": "🏡 全家拥抱收尾",
+          "line": "We are a big happy <strong>family</strong>!"
+        }
+      ],
+      "words": [
+        {
+          "key": "grandpa",
+          "word": "Grandpa",
+          "zh": "爷爷/外公",
+          "sentence": "I love Grandpa!",
+          "highlight": "Grandpa",
+          "color": "#0D9488",
+          "soft": "#CCFBF1",
+          "cardImg": "./img/v3/cards/EP038/grandpa.png",
+          "sceneImg": "./img/v3/scenes/ep038_w1.jpg",
+          "sceneTag": "给爷爷打电话问好说",
+          "distractor": "grandma",
+          "leadAudio": "./audio/v3/EP038/lead_grandpa.mp3",
+          "teachAudio": "./audio/v3/EP038/teach_grandpa.mp3",
+          "quizAudio": "./audio/v3/EP038/quiz_grandpa.mp3",
+          "ansAudio": "./audio/v3/EP038/ans_grandpa.mp3"
+        },
+        {
+          "key": "grandma",
+          "word": "Grandma",
+          "zh": "奶奶/外婆",
+          "sentence": "I love Grandma!",
+          "highlight": "Grandma",
+          "color": "#7C3AED",
+          "soft": "#EDE9FE",
+          "cardImg": "./img/v3/cards/EP038/grandma.png",
+          "sceneImg": "./img/v3/scenes/ep038_w2.jpg",
+          "sceneTag": "吃奶奶做的点心时说",
+          "distractor": "grandpa",
+          "leadAudio": "./audio/v3/EP038/lead_grandma.mp3",
+          "teachAudio": "./audio/v3/EP038/teach_grandma.mp3",
+          "quizAudio": "./audio/v3/EP038/quiz_grandma.mp3",
+          "ansAudio": "./audio/v3/EP038/ans_grandma.mp3"
+        },
+        {
+          "key": "baby",
+          "word": "Baby",
+          "zh": "小宝宝",
+          "sentence": "A sweet little baby!",
+          "highlight": "baby",
+          "color": "#DB2777",
+          "soft": "#FCE7F3",
+          "cardImg": "./img/v3/cards/EP038/baby.png",
+          "sceneImg": "./img/v3/scenes/ep038_w3.jpg",
+          "sceneTag": "翻宝宝小时候照片说",
+          "distractor": "family",
+          "leadAudio": "./audio/v3/EP038/lead_baby.mp3",
+          "teachAudio": "./audio/v3/EP038/teach_baby.mp3",
+          "quizAudio": "./audio/v3/EP038/quiz_baby.mp3",
+          "ansAudio": "./audio/v3/EP038/ans_baby.mp3"
+        },
+        {
+          "key": "family",
+          "word": "Family",
+          "zh": "大家庭",
+          "sentence": "I love my family!",
+          "highlight": "family",
+          "color": "#EA580C",
+          "soft": "#FFEDD5",
+          "cardImg": "./img/v3/cards/EP038/family.png",
+          "sceneImg": "./img/v3/scenes/ep038_w4.jpg",
+          "sceneTag": "周末全家聚餐合影说",
+          "distractor": "baby",
+          "leadAudio": "./audio/v3/EP038/lead_family.mp3",
+          "teachAudio": "./audio/v3/EP038/teach_family.mp3",
+          "quizAudio": "./audio/v3/EP038/quiz_family.mp3",
+          "ansAudio": "./audio/v3/EP038/ans_family.mp3"
+        }
+      ]
+    },
+    "EP039": {
+      "id": "EP039",
+      "num": 39,
+      "title": "餐桌好习惯",
+      "enTitle": "sit down · take a bite · chew well · wipe your mouth",
+      "subtitle": "第 39 集 · 法式格子布小餐厅",
+      "island": "美味餐桌",
+      "hook": "吃饭不追喂不乱跑 · 4 句餐桌好习惯英语",
+      "theme": {
+        "paper": "#FFF6F4",
+        "accent": "#C94A38",
+        "accentLip": "#8E2B1D",
+        "pillBg": "#FDE4DF",
+        "ink": "#4F1D16"
+      },
+      "defaultScene": "./img/v3/scenes/ep039_main.jpg",
+      "sceneLabel": "法式格子布小餐厅",
+      "worksheet": "./worksheets/EP039-亲子涂色连线卡.jpg",
+      "parentScript": [
+        {
+          "role": "👩 开饭请上桌",
+          "line": "Dinner time! Please <strong>sit down</strong>!"
+        },
+        {
+          "role": "🧒 尝新菜互动",
+          "line": "Mmm! I can <strong>take a bite</strong>!"
+        },
+        {
+          "role": "👩 细嚼慢咽提醒",
+          "line": "Good job! <strong>Chew well</strong> slowly!"
+        },
+        {
+          "role": "🧻 饭后文明收尾",
+          "line": "All done! <strong>Wipe your mouth</strong> clean!"
+        }
+      ],
+      "words": [
+        {
+          "key": "sit_down",
+          "word": "Sit down",
+          "zh": "坐好",
+          "sentence": "Sit down nicely!",
+          "highlight": "sit",
+          "color": "#E11D48",
+          "soft": "#FFE4E6",
+          "cardImg": "./img/v3/cards/EP039/sit_down.png",
+          "sceneImg": "./img/v3/scenes/ep039_w1.jpg",
+          "sceneTag": "开饭请娃上餐椅时用",
+          "distractor": "take_a_bite",
+          "leadAudio": "./audio/v3/EP039/lead_sit_down.mp3",
+          "teachAudio": "./audio/v3/EP039/teach_sit_down.mp3",
+          "quizAudio": "./audio/v3/EP039/quiz_sit_down.mp3",
+          "ansAudio": "./audio/v3/EP039/ans_sit_down.mp3"
+        },
+        {
+          "key": "take_a_bite",
+          "word": "Take a bite",
+          "zh": "咬一口",
+          "sentence": "Take a little bite!",
+          "highlight": "take",
+          "color": "#EA580C",
+          "soft": "#FFEDD5",
+          "cardImg": "./img/v3/cards/EP039/take_a_bite.png",
+          "sceneImg": "./img/v3/scenes/ep039_w2.jpg",
+          "sceneTag": "鼓励尝试新菜时说",
+          "distractor": "sit_down",
+          "leadAudio": "./audio/v3/EP039/lead_take_a_bite.mp3",
+          "teachAudio": "./audio/v3/EP039/teach_take_a_bite.mp3",
+          "quizAudio": "./audio/v3/EP039/quiz_take_a_bite.mp3",
+          "ansAudio": "./audio/v3/EP039/ans_take_a_bite.mp3"
+        },
+        {
+          "key": "chew_well",
+          "word": "Chew well",
+          "zh": "好好嚼",
+          "sentence": "Chew well slowly!",
+          "highlight": "chew",
+          "color": "#059669",
+          "soft": "#D1FAE5",
+          "cardImg": "./img/v3/cards/EP039/chew_well.png",
+          "sceneImg": "./img/v3/scenes/ep039_w3.jpg",
+          "sceneTag": "提醒细嚼慢咽不吞咽",
+          "distractor": "wipe_your_mouth",
+          "leadAudio": "./audio/v3/EP039/lead_chew_well.mp3",
+          "teachAudio": "./audio/v3/EP039/teach_chew_well.mp3",
+          "quizAudio": "./audio/v3/EP039/quiz_chew_well.mp3",
+          "ansAudio": "./audio/v3/EP039/ans_chew_well.mp3"
+        },
+        {
+          "key": "wipe_your_mouth",
+          "word": "Wipe your mouth",
+          "zh": "擦擦嘴",
+          "sentence": "Wipe your mouth clean!",
+          "highlight": "wipe",
+          "color": "#0284C7",
+          "soft": "#E0F2FE",
+          "cardImg": "./img/v3/cards/EP039/wipe_your_mouth.png",
+          "sceneImg": "./img/v3/scenes/ep039_w4.jpg",
+          "sceneTag": "吃完饭递纸巾时说",
+          "distractor": "chew_well",
+          "leadAudio": "./audio/v3/EP039/lead_wipe_your_mouth.mp3",
+          "teachAudio": "./audio/v3/EP039/teach_wipe_your_mouth.mp3",
+          "quizAudio": "./audio/v3/EP039/quiz_wipe_your_mouth.mp3",
+          "ansAudio": "./audio/v3/EP039/ans_wipe_your_mouth.mp3"
+        }
+      ]
+    },
+    "EP040": {
+      "id": "EP040",
+      "num": 40,
+      "title": "快慢与声音大小",
+      "enTitle": "fast · slow · loud · quiet",
+      "subtitle": "第 40 集 · 阳光彩旗草地跑道",
+      "island": "基础认知",
+      "hook": "公共场合控音量不吼娃 · 4 个快慢声音反义词",
+      "theme": {
+        "paper": "#FFF8EA",
+        "accent": "#D97724",
+        "accentLip": "#9A4E10",
+        "pillBg": "#FFE9C2",
+        "ink": "#4A2C14"
+      },
+      "defaultScene": "./img/v3/scenes/ep040_main.jpg",
+      "sceneLabel": "阳光彩旗草地跑道",
+      "worksheet": "./worksheets/EP040-亲子涂色连线卡.jpg",
+      "parentScript": [
+        {
+          "role": "👩 户外奔跑游戏",
+          "line": "Run <strong>fast</strong>! Now walk <strong>slow</strong> like a snail!"
+        },
+        {
+          "role": "🥁 拍手敲鼓对比",
+          "line": "Boom! That drum is <strong>loud</strong>!"
+        },
+        {
+          "role": "🤫 进图书馆提醒",
+          "line": "Shh! Let's use our <strong>quiet</strong> voice!"
+        },
+        {
+          "role": "🧒 宝贝切换音量",
+          "line": "Whisper, whisper—I am <strong>quiet</strong>!"
+        }
+      ],
+      "words": [
+        {
+          "key": "fast",
+          "word": "Fast",
+          "zh": "快",
+          "sentence": "Run so fast!",
+          "highlight": "fast",
+          "color": "#EA580C",
+          "soft": "#FFEDD5",
+          "cardImg": "./img/v3/cards/EP040/fast.png",
+          "sceneImg": "./img/v3/scenes/ep040_w1.jpg",
+          "sceneTag": "户外赛跑玩游戏时说",
+          "distractor": "slow",
+          "leadAudio": "./audio/v3/EP040/lead_fast.mp3",
+          "teachAudio": "./audio/v3/EP040/teach_fast.mp3",
+          "quizAudio": "./audio/v3/EP040/quiz_fast.mp3",
+          "ansAudio": "./audio/v3/EP040/ans_fast.mp3"
+        },
+        {
+          "key": "slow",
+          "word": "Slow",
+          "zh": "慢",
+          "sentence": "Walk slow like a snail!",
+          "highlight": "slow",
+          "color": "#059669",
+          "soft": "#D1FAE5",
+          "cardImg": "./img/v3/cards/EP040/slow.png",
+          "sceneImg": "./img/v3/scenes/ep040_w2.jpg",
+          "sceneTag": "像小蜗牛散步时说",
+          "distractor": "fast",
+          "leadAudio": "./audio/v3/EP040/lead_slow.mp3",
+          "teachAudio": "./audio/v3/EP040/teach_slow.mp3",
+          "quizAudio": "./audio/v3/EP040/quiz_slow.mp3",
+          "ansAudio": "./audio/v3/EP040/ans_slow.mp3"
+        },
+        {
+          "key": "loud",
+          "word": "Loud",
+          "zh": "大声",
+          "sentence": "The drum is loud!",
+          "highlight": "loud",
+          "color": "#DC2626",
+          "soft": "#FEE2E2",
+          "cardImg": "./img/v3/cards/EP040/loud.png",
+          "sceneImg": "./img/v3/scenes/ep040_w3.jpg",
+          "sceneTag": "敲大鼓唱歌时体验用",
+          "distractor": "quiet",
+          "leadAudio": "./audio/v3/EP040/lead_loud.mp3",
+          "teachAudio": "./audio/v3/EP040/teach_loud.mp3",
+          "quizAudio": "./audio/v3/EP040/quiz_loud.mp3",
+          "ansAudio": "./audio/v3/EP040/ans_loud.mp3"
+        },
+        {
+          "key": "quiet",
+          "word": "Quiet",
+          "zh": "安静",
+          "sentence": "Shh, be quiet!",
+          "highlight": "quiet",
+          "color": "#0284C7",
+          "soft": "#E0F2FE",
+          "cardImg": "./img/v3/cards/EP040/quiet.png",
+          "sceneImg": "./img/v3/scenes/ep040_w4.jpg",
+          "sceneTag": "进图书馆看绘本时用",
+          "distractor": "loud",
+          "leadAudio": "./audio/v3/EP040/lead_quiet.mp3",
+          "teachAudio": "./audio/v3/EP040/teach_quiet.mp3",
+          "quizAudio": "./audio/v3/EP040/quiz_quiet.mp3",
+          "ansAudio": "./audio/v3/EP040/ans_quiet.mp3"
+        }
+      ]
+    },
+    "EP041": {
+      "id": "EP041",
+      "num": 41,
+      "title": "动物园大明星",
+      "enTitle": "lion · elephant · giraffe · monkey",
+      "subtitle": "第 41 集 · 童话动物园木拱大门",
+      "island": "自然探索",
+      "hook": "周末逛动物园必看 · 4 位超人气动物明星",
+      "theme": {
+        "paper": "#F2FBF8",
+        "accent": "#1F7A65",
+        "accentLip": "#124E40",
+        "pillBg": "#DCF5EE",
+        "ink": "#134035"
+      },
+      "defaultScene": "./img/v3/scenes/ep041_main.jpg",
+      "sceneLabel": "童话动物园木拱大门",
+      "worksheet": "./worksheets/EP041-亲子涂色连线卡.jpg",
+      "parentScript": [
+        {
+          "role": "👩 看草原岩石区",
+          "line": "Roar! Who is the brave king? It's a <strong>lion</strong>!"
+        },
+        {
+          "role": "🐘 甩手学长鼻子",
+          "line": "Look at the big <strong>elephant</strong> spraying water!"
+        },
+        {
+          "role": "👩 抬头看树梢",
+          "line": "Wow! The <strong>giraffe</strong> is so tall!"
+        },
+        {
+          "role": "🧒 模仿小猴回答",
+          "line": "Ooh ooh! Look at the funny <strong>monkey</strong>!"
+        }
+      ],
+      "words": [
+        {
+          "key": "lion",
+          "word": "Lion",
+          "zh": "狮子",
+          "sentence": "Roar! A golden lion!",
+          "highlight": "lion",
+          "color": "#D97706",
+          "soft": "#FEF3C7",
+          "cardImg": "./img/v3/cards/EP041/lion.png",
+          "sceneImg": "./img/v3/scenes/ep041_w1.jpg",
+          "sceneTag": "学小狮子酷酷吼一声",
+          "distractor": "elephant",
+          "leadAudio": "./audio/v3/EP041/lead_lion.mp3",
+          "teachAudio": "./audio/v3/EP041/teach_lion.mp3",
+          "quizAudio": "./audio/v3/EP041/quiz_lion.mp3",
+          "ansAudio": "./audio/v3/EP041/ans_lion.mp3"
+        },
+        {
+          "key": "elephant",
+          "word": "Elephant",
+          "zh": "大象",
+          "sentence": "A big elephant!",
+          "highlight": "elephant",
+          "color": "#0284C7",
+          "soft": "#E0F2FE",
+          "cardImg": "./img/v3/cards/EP041/elephant.png",
+          "sceneImg": "./img/v3/scenes/ep041_w2.jpg",
+          "sceneTag": "甩手臂模仿长鼻子",
+          "distractor": "lion",
+          "leadAudio": "./audio/v3/EP041/lead_elephant.mp3",
+          "teachAudio": "./audio/v3/EP041/teach_elephant.mp3",
+          "quizAudio": "./audio/v3/EP041/quiz_elephant.mp3",
+          "ansAudio": "./audio/v3/EP041/ans_elephant.mp3"
+        },
+        {
+          "key": "giraffe",
+          "word": "Giraffe",
+          "zh": "长颈鹿",
+          "sentence": "The giraffe is tall!",
+          "highlight": "giraffe",
+          "color": "#EA580C",
+          "soft": "#FFEDD5",
+          "cardImg": "./img/v3/cards/EP041/giraffe.png",
+          "sceneImg": "./img/v3/scenes/ep041_w3.jpg",
+          "sceneTag": "踮脚伸长脖子模仿",
+          "distractor": "monkey",
+          "leadAudio": "./audio/v3/EP041/lead_giraffe.mp3",
+          "teachAudio": "./audio/v3/EP041/teach_giraffe.mp3",
+          "quizAudio": "./audio/v3/EP041/quiz_giraffe.mp3",
+          "ansAudio": "./audio/v3/EP041/ans_giraffe.mp3"
+        },
+        {
+          "key": "monkey",
+          "word": "Monkey",
+          "zh": "猴子",
+          "sentence": "A playful monkey!",
+          "highlight": "monkey",
+          "color": "#059669",
+          "soft": "#D1FAE5",
+          "cardImg": "./img/v3/cards/EP041/monkey.png",
+          "sceneImg": "./img/v3/scenes/ep041_w4.jpg",
+          "sceneTag": "吃香蕉学小猴荡秋千",
+          "distractor": "giraffe",
+          "leadAudio": "./audio/v3/EP041/lead_monkey.mp3",
+          "teachAudio": "./audio/v3/EP041/teach_monkey.mp3",
+          "quizAudio": "./audio/v3/EP041/quiz_monkey.mp3",
+          "ansAudio": "./audio/v3/EP041/ans_monkey.mp3"
+        }
+      ]
     }
   },
   "mapEpisodes": [
@@ -4377,6 +4912,41 @@ window.TUMAO_V3 = {
       "title": "蜡笔盒的新颜色",
       "island": "基础认知",
       "words": "Pink · Purple · Black · Silver",
+      "v3": true
+    },
+    {
+      "id": "EP037",
+      "title": "动动小手和小脚",
+      "island": "身体日常",
+      "words": "Hands · Feet · Knees · Shoulders",
+      "v3": true
+    },
+    {
+      "id": "EP038",
+      "title": "爷爷奶奶和小宝宝",
+      "island": "情商社交",
+      "words": "Grandpa · Grandma · Baby · Family",
+      "v3": true
+    },
+    {
+      "id": "EP039",
+      "title": "餐桌好习惯",
+      "island": "美味餐桌",
+      "words": "Sit down · Take a bite · Chew well · Wipe your mouth",
+      "v3": true
+    },
+    {
+      "id": "EP040",
+      "title": "快慢与声音大小",
+      "island": "基础认知",
+      "words": "Fast · Slow · Loud · Quiet",
+      "v3": true
+    },
+    {
+      "id": "EP041",
+      "title": "动物园大明星",
+      "island": "自然探索",
+      "words": "Lion · Elephant · Giraffe · Monkey",
       "v3": true
     }
   ]

@@ -83,6 +83,8 @@
 
     const stickers = getUnlockedStickers(prog);
     document.getElementById("stickerCountTxt").textContent = `贴纸册 ${stickers.size}/${countAllStickers()}`;
+    const sp = document.getElementById("showcaseTotalPill");
+    if (sp) sp.textContent = `全 ${ALL_EP_IDS.length} 集已点亮`;
   }
 
   function renderFlagships() {
